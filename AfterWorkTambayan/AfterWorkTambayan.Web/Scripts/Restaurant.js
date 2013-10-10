@@ -6,8 +6,8 @@ $(document).ready(function () {
     $('#example').popover(
         {
             title: 'About',
-            content: "<strong>Restaurant Profile Accordion and Add Restaurant Partial View are about integrating conventional ASP.NET MVC with Twitter Bootstrap.<br /><br />" +
-                "Menu Administration is working around ASP.NET MVC to code Twitter Bootstrap modal input forms.<br /><br />" +
+            content: "<strong>Restaurant Profile Accordion and Add Restaurant Partial View are about integrating conventional ASP.NET MVC with Bootstrap.<br /><br />" +
+                "Menu Administration is working around ASP.NET MVC to code Bootstrap modal input forms.<br /><br />" +
                 "Foods and Services Accordion shall be all AngularJS.</strong>"
         }
     );
