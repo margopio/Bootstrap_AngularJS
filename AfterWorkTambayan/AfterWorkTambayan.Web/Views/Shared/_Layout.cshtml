@@ -1,0 +1,71 @@
+﻿@using AfterWorkTambayan.Web.ExternalHelpers
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style type="text/css">
+        body
+        {
+            padding-top: 40px;            
+        }
+        .sidebar-nav
+        {
+            padding: 5px 0;
+        } 
+               
+    </style>    
+    @Styles.Render("~/Content/css")     
+    @* @Scripts.Render("~/bundles/modernizr")*@
+</head>
+<body>
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span
+                    class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                </a>
+                @Html.ActionLink("Put logo here", "Index", "Home", new { @class = "brand" })
+                @Html.Partial("_LoginPartial")
+                <div class="nav-collapse">
+                    <ul class="nav">
+                        <li class="active">@Html.MenuLink("Home", "Index", "Home")</li>
+                        <li>@Html.MenuLink("Restaurant", "Index", "Restaurant")</li>
+                        <li>@Html.MenuLink("About", "About", "Home")</li>
+                        <li>@Html.MenuLink("Another", "Contact", "Home")</li>                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @RenderSection("Notice", required: false)       
+    
+    <div class="container">
+        <div class="row-fluid">
+            @RenderBody()
+        </div>       
+    </div>    
+    <hr />        
+	<div class="container">
+		<div class="row-fluid">
+			<div class="span4">
+                <strong>Themed By <a href="http://getbootstrap.com/2.3.2/">Bootstrap</a></strong>				
+			</div>
+			<div class="span4" style="text-align:center">				
+				<strong>&copy; 2013 <a href="#">AfterWorkTambayan</a></strong>				
+			</div>
+			<div class="span4" style="text-align:right">
+				<strong>Hosted By <a href="https://appharbor.com/">AppHarbor</a></strong>
+			</div>
+		</div>
+	</div>  
+     
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

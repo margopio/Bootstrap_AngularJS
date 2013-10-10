@@ -1,0 +1,136 @@
+﻿@model AfterWorkTambayan.Web.Model.GetRestaurantViewModel
+
+<br />
+@using (Html.BeginForm())
+{
+    if (ViewData.ModelState[""] != null && ViewData.ModelState[""].Errors.Any())
+    { 
+       <div class="alert alert-error">          
+          @Html.ValidationSummary(true)
+       </div>
+    }
+
+    if (ViewBag.Status == "Get")
+    {
+        @Html.HiddenFor(m => m.Restaurant.RestaurantId)
+    }   
+    
+    <div class="row well">
+        <div class="span6" style="padding-left: 20px">
+            <div class="row" style="padding-top: 5px">
+                <div class="span7">
+                    @Html.LabelFor(m => m.Restaurant.Name)
+                    @Html.TextBoxFor(m => m.Restaurant.Name, new { @class = "span12" })
+                    <span style="color: red">@Html.ValidationMessageFor(m => m.Restaurant.Name)</span>
+                </div>
+                <div class="span5">
+                    <span class="help-block">Restaurant enabled for</span>                
+                    <label class="radio inline">
+                        @Html.RadioButtonFor(model => model.Restaurant.IsTest, "1", new { @checked = "checked" }) Public
+                    </label>
+                    <label class="radio inline">
+                        @Html.RadioButtonFor(model => model.Restaurant.IsTest, "2") Test                    
+                    </label>
+                </div>
+            </div>
+            <div class="row" style="padding-top: 5px">
+                <div class="span12">
+                    @Html.LabelFor(m => m.Restaurant.Address)
+                    @Html.TextBoxFor(m => m.Restaurant.Address, new { @class = "span10" })
+                    <span style="color: red">@Html.ValidationMessageFor(m => m.Restaurant.Address)</span>
+                </div>
+            </div>            
+            <div class="row" style="padding-top: 5px">
+                <div class="span4">
+                    @Html.LabelFor(m => m.Restaurant.City)
+                    @Html.TextBoxFor(m => m.Restaurant.City, new { @class = "span12" })
+                    <span style="color: red">@Html.ValidationMessageFor(m => m.Restaurant.City)</span>
+                </div>
+                <div class="span4">
+                    @Html.LabelFor(m => m.Restaurant.State)
+                    @Html.DropDownListFor(model => model.Restaurant.State, Model.USStates, "-- Select One --", new { @class = "span12" })
+                    <span style="color: red">@Html.ValidationMessageFor(m => m.Restaurant.State)</span>
+                </div>
+                <div class="span4">
+                    @Html.LabelFor(m => m.Restaurant.ZipCode)
+                    @Html.TextBoxFor(m => m.Restaurant.ZipCode, new { @class = "span6" })
+                    <span style="color: red">@Html.ValidationMessageFor(m => m.Restaurant.ZipCode)</span>
+                </div>
+            </div>
+            <div class="row" style="padding-top: 5px">
+                <div class="span12">
+                    @Html.LabelFor(m => m.Restaurant.Description)
+                    @Html.TextAreaFor(m => m.Restaurant.Description, new { @class = "span10" })
+                    <span style="font-size: smaller">*max 200 chars</span>
+                </div>                
+            </div>
+            <div class="row" style="padding-top: 5px">
+                <div class="span4">
+                    @Html.LabelFor(m => m.Restaurant.Currency)
+                    @Html.DropDownListFor(model => model.Restaurant.Currency, Model.Currencies, "-- Select One --", new { @class = "span12" })
+                    <span style="color: red">@Html.ValidationMessageFor(m => m.Restaurant.Currency)</span>
+                </div>
+                <div class="span3">
+                    @Html.LabelFor(m => m.Restaurant.Tax)
+                    @Html.TextBoxFor(m => m.Restaurant.Tax, new { @class = "span10" })                    
+                </div>
+                <div class="span5">
+                    @Html.LabelFor(m => m.Restaurant.Service)
+                    @Html.TextBoxFor(m => m.Restaurant.Service, new { @class = "span7" })
+                </div>
+            </div>
+        </div>    
+        <div class="span6">            
+            <div class="row">
+                <span class="help-block">Operation hours</span>
+                <div class="span2">                    
+                    @Html.TextBoxFor(m => m.Restaurant.OperationHrsFrom, new { @class = "span12" }) 
+                </div>
+                <div class="span3">                    
+                    <div id="am" class="btn-group" data-toggle="buttons-radio">
+                        @{                            
+                            if (Model.AMHrs)
+                            {
+                                <button type="button" class="btn btn-primary active">AM</button>
+                                <button type="button" class="btn btn-primary">PM</button>
+                            }                            
+                        }                       
+                    </div>
+                </div>
+                <div class="span1">   
+                    To                 
+                </div>
+                <div class="span2">                    
+                    @Html.TextBoxFor(m => m.Restaurant.OperationHrsTo, new { @class = "span12" }) 
+                </div>
+                <div class="span3">                    
+                    <div id="pm" class="btn-group" data-toggle="buttons-radio">
+                        @{                            
+                            if (Model.PMHrs)
+                            {                                
+                                <button type="button" class="btn btn-primary">AM</button>
+                                <button type="button" class="btn btn-primary active">PM</button>
+                            }
+                        }                        
+                    </div>
+                </div>                
+            </div>
+            <div class="row">
+                <span style="font-size: smaller">*24-Hours Time</span>
+            </div>
+            <div class="row">
+                
+            </div>
+        </div>
+    </div>    
+    <div class="pull-right">
+        <button type="submit" class="btn btn-primary">Update</button>        
+        <button id="cancel" class="btn" type="reset">Reset</button>        
+    </div>    
+}
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/GetRestaurantPartial.js")" type="text/javascript"></script>
+
+

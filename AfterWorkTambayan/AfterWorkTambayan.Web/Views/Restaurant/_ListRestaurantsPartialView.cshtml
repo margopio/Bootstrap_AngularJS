@@ -1,0 +1,40 @@
+﻿@model AfterWorkTambayan.Web.Model.GetRestaurantViewModel
+
+<div class="accordion" id="accordion2">
+        <div class="accordion-group" style="padding-left: 10px">
+            <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+                    <strong>Restaurant</strong>&nbsp;<i class="icon-edit"></i> 
+                </a>                
+            </div>
+            <div id="collapseOne" class="accordion-body collapse in">
+                <div class="accordion-inner" style="padding-left: 30px">
+                    @Html.Partial("_GetRestaurantPartialView", Model)
+                </div>
+            </div>
+        </div>
+        <div class="accordion-group" style="padding-left: 10px">
+            <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+                    <strong>Restaurant Contact Info</strong>&nbsp;<i class="icon-edit"></i> 
+                </a>
+            </div>
+            <div id="collapseTwo" class="accordion-body collapse">
+                <div class="accordion-inner">
+                    Contact Info ---
+                </div>
+            </div>
+        </div>
+        <div class="accordion-group" style="padding-left: 10px">
+            <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
+                    <strong>Foods and Services</strong>&nbsp;<i class="icon-edit"></i> 
+                </a>
+            </div>
+            <div id="collapseThree" class="accordion-body collapse">
+                <div class="accordion-inner">
+                    Foods and Services ---
+                </div>
+            </div>
+        </div>
+    </div>
