@@ -30,7 +30,7 @@ namespace AfterWorkTambayan.Domain.Repository
             return flag;
         }
 
-        public bool Delete(Guid id)
+        public bool Delete(Guid? id)
         {
             var flag = false;
             try

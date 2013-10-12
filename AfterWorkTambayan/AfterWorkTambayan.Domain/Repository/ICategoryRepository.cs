@@ -9,7 +9,7 @@ namespace AfterWorkTambayan.Domain.Repository
     public interface ICategoryRepository
     {
         bool Add(Category category);
-        bool Delete(Guid id);
+        bool Delete(Guid? id);
         Category GetCategory(Guid id);
         IEnumerable<Category> GetCategories();
         void ClearAll();

@@ -1,7 +1,8 @@
 ﻿// GetMenuPartial
 
 $(document).ready(function () {
-    //alert("GetMenuPartial");
+    //alert("GetMenuPartial");    
+
     $('#iconImageUrl').click(function (e) {
         var imageUrl = $('#Category_ImageUrl').val();
         if (imageUrl) {
@@ -23,6 +24,7 @@ $(document).ready(function () {
                     $('#divResult').load('Restaurant/GetMenu');
                     //return;
                 } else {
+                    $('button[data-loading-text]').button('reset');
                     alert("Something went wrong. Please retry!");
                 }
             });
@@ -30,41 +32,54 @@ $(document).ready(function () {
         return false;
     });
 
-    //   $('form').validate({
-    //        rules: {
-    //            ImageUrl: { required: true, minlength: 4 },
-    //            Name: { required: true, minlength: 4 },
-    //            Description: { required: true, minlength: 4 }
-    //        },
-    //        messages: {
-    //            Name: "Name title is required (at least 4 chars).",
-    //            Description: "Description is required is required (at least 10 chars)."
-    //        },
-    //        errorContainer: "#validationSummary",
-    //        errorLabelContainer: "#validationSummary ul",
-    //        wrapper: "li"
-    //        highlight: function (element) {
-    //            $(element).closest('.control-group')
-    //                .removeClass('success').addClass('error');
-    //        },
-    //        success: function (element) {
-    //            element
-    //                .addClass('valid').closest('.control-group')
-    //                .removeClass('error').addClass('success');
-    //        },
-    //        submitHandler: function (form) {
-    //            var url = "/Restaurant/GetMenu";
-    //            var postData = form.serialize();
-    //            alert("postData = " + postData);
-    //            $.post(url, postData, function (data) {
-    //                if (data.toLowerCase() == "OK") {
-    //                    alert("Data saved!");
-    //                    return;
-    //                }
-    //                alert("Something went wrong. Please retry!");
-    //            });
-    //            return false;
-    //        }
-    //  });
+    var dataId, imageUrl, name, description;
+
+    $('#edit').click(function () {
+        var chkSelector = 'tr td:nth-child(1) :checkbox';
+        $('#menuTable ' + chkSelector).each(function () {
+            var $this = $(this);
+            if ($this.is(':checked')) {                
+                var $row = $this.closest('tr');
+                dataId = $row.attr('data-category-id');
+                imageUrl = $row.children('td:eq(1)').children('img').attr('src');
+                name = $row.children('td:eq(2)').text();
+                description = $row.children('td:eq(3)').text();
+                //alert("dataId = " + dataId + " imageUrl = " + imageUrl + " name = " + name + " description = " + description);
+                $('#modal').modal('show');
+                return;
+            }
+        });
+    });
+
+    $('#modal').on('shown', function () {
+        $('#Category_CategoryId').val(dataId);
+        $('#Category_ImageUrl').val(imageUrl);
+        $('#Category_Name').val(name);
+        $('#Category_Description').val(description);
+    })
+
+    $('#delete').click(function () {
+        var chkSelector = 'tr td:nth-child(1) :checkbox';
+        $('#menuTable ' + chkSelector).each(function () {
+            var $this = $(this);
+            if ($this.is(':checked')) {
+                var $row = $this.closest('tr');
+                dataId = $row.attr('data-category-id');                
+                //alert("dataId = " + dataId);                
+                var url = "/Restaurant/DeleteMenu/" + dataId;
+                $.post(url, function (data) {
+                    if (data === "OK") {
+                        //alert("Data deleted!");                        
+                        $('#divResult').html('');
+                        $('#divResult').load('Restaurant/GetMenu');
+                        //return;
+                    } else {                        
+                        alert("Something went wrong. Please retry!");
+                    }
+                });
+                return;
+            }
+        });
+    });
 
 });

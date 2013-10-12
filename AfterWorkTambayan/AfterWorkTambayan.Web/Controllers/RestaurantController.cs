@@ -105,6 +105,10 @@ namespace AfterWorkTambayan.Web.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (menuViewModel.Category.CategoryId != null)
+                {
+                    _repositoryCategory.Delete(menuViewModel.Category.CategoryId);
+                }                
                 Category category = new Category();
                 category.CategoryId = Guid.NewGuid();
                 category.ImageUrl = menuViewModel.Category.ImageUrl;
@@ -117,6 +121,16 @@ namespace AfterWorkTambayan.Web.Controllers
             {
                 return Content(String.Empty);
             }
+        }
+
+        //
+        // POST: /Restaurant/GetMenu
+
+        [HttpPost]
+        public ActionResult DeleteMenu(Guid id)
+        {
+            _repositoryCategory.Delete(id);
+            return Content("OK");
         }
 
         //
