@@ -5,6 +5,7 @@ $(document).ready(function () {
     $('form').submit(function (e) {
         //e.preventDefault();
         if ($(this).valid()) {
+            $('button[data-loading-text]').button('loading');
             $('div#am button').each(function () {
                 if ($(this).hasClass('active')) {
                     var am = $(this).text();
@@ -33,8 +34,7 @@ $(document).ready(function () {
 
             //var formData = $(this).serialize();
             //alert("formData = " + formData);
-            $.post('/Restaurant/AddRestaurant', $(this).serialize(), function (data) {
-                //alert("data = " + data);
+            $.post('/Restaurant/AddRestaurant', $(this).serialize(), function (data) {                
                 if (data === "OK") {
                     window.location.href = "/Restaurant";
                 } else {
@@ -44,6 +44,7 @@ $(document).ready(function () {
                     $('#divResult').slideDown("slow");
                     $.validator.unobtrusive.parse($("#divResult"));
                 }
+                return false;
             });
 
         }
@@ -52,7 +53,7 @@ $(document).ready(function () {
 
     $("#cancel").click(function (e) {
         $('form')[0].reset();
-    });
+    });    
 
 });
 

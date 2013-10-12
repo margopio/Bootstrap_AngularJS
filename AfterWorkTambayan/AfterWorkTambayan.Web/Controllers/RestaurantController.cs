@@ -82,7 +82,19 @@ namespace AfterWorkTambayan.Web.Controllers
 
         public ActionResult GetMenu()
          {
-             return PartialView("_MenuPartialView", new MenuViewModel());
+            MenuViewModel menuViewModel = new MenuViewModel();
+            menuViewModel.Category = new Category();
+            menuViewModel.Categories = (from r in _repositoryCategory.GetCategories()
+                         orderby r.Name
+                         select new Category
+                         {
+                            CategoryId = r.CategoryId,
+                            ImageUrl = r.ImageUrl,
+                            Name = r.Name,
+                            Description = r.Description
+                         }).ToList();
+
+            return PartialView("_MenuPartialView", menuViewModel);
          }
 
         //

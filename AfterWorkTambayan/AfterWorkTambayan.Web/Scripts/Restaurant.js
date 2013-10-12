@@ -1,7 +1,7 @@
 ﻿// Restaurant.js
 
 $(document).ready(function () {
-    //alert('Restaurant');
+    //alert('Restaurant.js');
 
     $('#example').popover(
         {
@@ -39,8 +39,12 @@ $(document).ready(function () {
         return false;
     });
 
-    //var active = $('li.active a').attr("data-id");
-    //alert("active = " + active);
+    var active = $('#restaurant li.active a').attr("data-id");
+    //alert("active out = " + active);
+    if (active) {
+        //alert("active in = " + active);
+        $('#divResult').load('Restaurant/GetRestaurant/' + active);
+    }
 
     //    $(document).on('click', '#cancel', function () {
     //        $('form')[0].reset();

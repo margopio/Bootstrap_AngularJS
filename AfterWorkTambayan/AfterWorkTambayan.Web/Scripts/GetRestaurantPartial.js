@@ -3,8 +3,9 @@
 $(document).ready(function () {
     //alert("GetRestaurantPartial");
     $('form').submit(function (e) {
-        //e.preventDefault();
+        //e.preventDefault();        
         if ($(this).valid()) {
+            $('button[data-loading-text]').button('loading');
             $('div#am button').each(function () {
                 if ($(this).hasClass('active')) {
                     var am = $(this).text();
@@ -31,12 +32,9 @@ $(document).ready(function () {
                 }
             });
 
-            //var formData = $(this).serialize();
-            //alert("formData = " + formData);
             $.post('/Restaurant/GetRestaurant', $(this).serialize(), function (data) {
-                //alert("data = " + data);
                 if (data === "OK") {
-                    window.location.href = "/Restaurant";
+                    window.location.href = "/Restaurant";     
                 } else {
                     $('#divResult').html('');
                     $('#divResult').slideUp();
@@ -44,15 +42,11 @@ $(document).ready(function () {
                     $('#divResult').slideDown("slow");
                     $.validator.unobtrusive.parse($("#divResult"));
                 }
+                return false;
             });
 
         }
-
         return false;
-    });
-
-    $("#cancel").click(function (e) {
-        $('form')[0].reset();
     });
 
     $('div#am button').each(function () {
@@ -69,6 +63,10 @@ $(document).ready(function () {
         if ($this.text() === 'PM') {
             $this.addClass('active');
         }
+    });
+
+    $("#cancel").click(function (e) {
+        $('form')[0].reset();
     });    
 
 });

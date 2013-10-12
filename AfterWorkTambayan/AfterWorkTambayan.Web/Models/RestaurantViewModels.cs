@@ -23,7 +23,8 @@ namespace AfterWorkTambayan.Web.Model
     }
 
     public class MenuViewModel
-    {
+    {        
         public Category Category { get; set; }
+        public IEnumerable<Category> Categories { get; set; }
     }
 }

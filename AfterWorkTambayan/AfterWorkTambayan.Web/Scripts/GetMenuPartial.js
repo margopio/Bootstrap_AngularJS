@@ -11,6 +11,7 @@ $(document).ready(function () {
 
     $('form').submit(function (e) {
         if ($(this).valid()) {
+            $('button[data-loading-text]').button('loading');
             var url = "/Restaurant/GetMenu";
             var postData = $(this).serialize();
             //alert("postData =  " + postData);
@@ -18,6 +19,8 @@ $(document).ready(function () {
                 if (data === "OK") {
                     //alert("Data saved!");
                     $('#modal').modal('hide');
+                    $('#divResult').html('');
+                    $('#divResult').load('Restaurant/GetMenu');
                     //return;
                 } else {
                     alert("Something went wrong. Please retry!");

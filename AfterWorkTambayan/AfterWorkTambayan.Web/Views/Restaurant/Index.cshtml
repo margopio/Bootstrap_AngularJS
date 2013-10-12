@@ -34,11 +34,11 @@
 </div>
 <br />
 <div id="divResult" class="span9">
-    @{
+    @*@{
         if (Model.Any()) {
             @Html.Action("GetRestaurant", new { id = @Model.First().Id })
         }
-    }
+    }*@
 </div>
 
 @section Scripts {   
