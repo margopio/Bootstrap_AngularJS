@@ -58,27 +58,35 @@ $(document).ready(function () {
         $('#Category_Description').val(description);
     })
 
-    $('#delete').click(function () {
+    $('#delete').click(function () {        
         var chkSelector = 'tr td:nth-child(1) :checkbox';
         $('#menuTable ' + chkSelector).each(function () {
             var $this = $(this);
             if ($this.is(':checked')) {
-                var $row = $this.closest('tr');
-                dataId = $row.attr('data-category-id');                
-                //alert("dataId = " + dataId);                
-                var url = "/Restaurant/DeleteMenu/" + dataId;
-                $.post(url, function (data) {
-                    if (data === "OK") {
-                        //alert("Data deleted!");                        
-                        $('#divResult').html('');
-                        $('#divResult').load('Restaurant/GetMenu');
-                        //return;
-                    } else {                        
-                        alert("Something went wrong. Please retry!");
+                bootbox.confirm("<strong>Are you sure?</strong>", function (result) {
+                    if (result) {
+                        //alert("User confirmed dialog");
+                        var $row = $this.closest('tr');
+                        dataId = $row.attr('data-category-id');                
+                        //alert("dataId = " + dataId);                
+                        var url = "/Restaurant/DeleteMenu/" + dataId;
+                        $.post(url, function (data) {
+                            if (data === "OK") {
+                                //alert("Data deleted!");                        
+                                $('#divResult').html('');
+                                $('#divResult').load('Restaurant/GetMenu');
+                                //return;
+                            } else {                        
+                                alert("Something went wrong. Please retry!");
+                            }
+                            
+                        });
+                        return;                           
+                    } else {
+                        //alert("User declined dialog");
                     }
-                });
-                return;
-            }
+                });            
+            }                
         });
     });
 
