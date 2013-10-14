@@ -1,7 +1,7 @@
 ﻿// Restaurant.js
 
 $(document).ready(function () {
-    //alert('Restaurant.js');
+    //alert('Restaurant.js');    
 
     $('#example').popover(
         {

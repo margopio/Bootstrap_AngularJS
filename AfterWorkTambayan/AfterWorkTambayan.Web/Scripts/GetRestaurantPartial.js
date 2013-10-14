@@ -2,6 +2,9 @@
 
 $(document).ready(function () {
     //alert("GetRestaurantPartial");
+
+    //$('#map').goMap(); 
+
     $('form').submit(function (e) {
         //e.preventDefault();        
         if ($(this).valid()) {
