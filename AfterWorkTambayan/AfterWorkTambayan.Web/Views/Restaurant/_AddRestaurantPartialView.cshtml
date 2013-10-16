@@ -1,6 +1,5 @@
 ﻿@model AfterWorkTambayan.Web.Model.GetRestaurantViewModel
 
-<br />
 @using (Html.BeginForm())
 {
     if (ViewData.ModelState[""] != null && ViewData.ModelState[""].Errors.Any())
@@ -74,9 +73,7 @@
                     @Html.TextBoxFor(m => m.Restaurant.Service, new { @class = "span7" })
                 </div>
             </div>
-        </div>    
-        <div class="span6">            
-            <div class="row">
+            <div class="row" style="padding-top: 5px">
                 <span class="help-block">Operation hours</span>
                 <div class="span2">                    
                     @Html.TextBoxFor(m => m.Restaurant.OperationHrsFrom, new { @class = "span12" }) 
@@ -102,9 +99,25 @@
             </div>
             <div class="row">
                 <span style="font-size: smaller">*24-Hours Time</span>
-            </div>
+            </div>            
+        </div>    
+        <div class="span6">
             <div class="row">
-                <div id="map" style="width: 400px; height: 300px;">
+                <div class="span4">
+                    @Html.LabelFor(m => m.Restaurant.Latitude)
+                    @Html.TextBoxFor(m => m.Restaurant.Latitude, new { @class = "span10", @Value = "14.5500" })                    
+                </div>                
+                <div class="span4">
+                    @Html.LabelFor(m => m.Restaurant.Longitude)
+                    @Html.TextBoxFor(m => m.Restaurant.Longitude, new { @class = "span10", @Value = "121.0333" })                    
+                </div>
+                <div class="span4">
+                    <label><span style="font-size: smaller">*click to preview map</span></label>
+                    <button id="previewMap" class="btn btn-mini" type="button">GO</button>
+                </div>
+            </div>            
+            <div class="row">
+                <div id="map" style="width: 450px; height: 370px;">
 
                 </div>                
             </div>

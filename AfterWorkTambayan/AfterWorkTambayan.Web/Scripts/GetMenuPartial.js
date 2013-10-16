@@ -32,13 +32,18 @@ $(document).ready(function () {
         return false;
     });
 
+    var add = false;
     var dataId, imageUrl, name, description;
+
+    $('#add').click(function () {
+        add = true;
+    });
 
     $('#edit').click(function () {
         var chkSelector = 'tr td:nth-child(1) :checkbox';
         $('#menuTable ' + chkSelector).each(function () {
             var $this = $(this);
-            if ($this.is(':checked')) {                
+            if ($this.is(':checked')) {
                 var $row = $this.closest('tr');
                 dataId = $row.attr('data-category-id');
                 imageUrl = $row.children('td:eq(1)').children('img').attr('src');
@@ -52,13 +57,21 @@ $(document).ready(function () {
     });
 
     $('#modal').on('shown', function () {
-        $('#Category_CategoryId').val(dataId);
-        $('#Category_ImageUrl').val(imageUrl);
-        $('#Category_Name').val(name);
-        $('#Category_Description').val(description);
+        if (add === true) {
+            $('#Category_CategoryId').val('');
+            $('#Category_ImageUrl').val('');
+            $('#Category_Name').val('');
+            $('#Category_Description').val('');
+            add = false;
+        } else {
+            $('#Category_CategoryId').val(dataId);
+            $('#Category_ImageUrl').val(imageUrl);
+            $('#Category_Name').val(name);
+            $('#Category_Description').val(description);            
+        }
     })
 
-    $('#delete').click(function () {        
+    $('#delete').click(function () {
         var chkSelector = 'tr td:nth-child(1) :checkbox';
         $('#menuTable ' + chkSelector).each(function () {
             var $this = $(this);
@@ -67,7 +80,7 @@ $(document).ready(function () {
                     if (result) {
                         //alert("User confirmed dialog");
                         var $row = $this.closest('tr');
-                        dataId = $row.attr('data-category-id');                
+                        dataId = $row.attr('data-category-id');
                         //alert("dataId = " + dataId);                
                         var url = "/Restaurant/DeleteMenu/" + dataId;
                         $.post(url, function (data) {
@@ -76,17 +89,17 @@ $(document).ready(function () {
                                 $('#divResult').html('');
                                 $('#divResult').load('Restaurant/GetMenu');
                                 //return;
-                            } else {                        
+                            } else {
                                 alert("Something went wrong. Please retry!");
                             }
-                            
+
                         });
-                        return;                           
+                        return;
                     } else {
                         //alert("User declined dialog");
                     }
-                });            
-            }                
+                });
+            }
         });
     });
 

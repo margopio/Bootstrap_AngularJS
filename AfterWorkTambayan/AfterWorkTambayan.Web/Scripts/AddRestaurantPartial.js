@@ -1,9 +1,23 @@
 ﻿// AddRestaurantPartial
 
+var map;
+function initialize() {
+    var mapOptions = {
+        zoom: 15,
+        center: new google.maps.LatLng(14.5500, 121.0333),
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    map = new google.maps.Map(document.getElementById('map'), mapOptions);
+}
+
 $(document).ready(function () {
     //alert("AddRestaurantPartial");
-
-    //$('#map').goMap(); 
+        
+    $('form').bind("keypress", function (e) {
+        if (e.keyCode == 13) {
+            return false;
+        }
+    });
 
     $('form').submit(function (e) {
         //e.preventDefault();
@@ -37,7 +51,7 @@ $(document).ready(function () {
 
             //var formData = $(this).serialize();
             //alert("formData = " + formData);
-            $.post('/Restaurant/AddRestaurant', $(this).serialize(), function (data) {                
+            $.post('/Restaurant/AddRestaurant', $(this).serialize(), function (data) {
                 if (data === "OK") {
                     window.location.href = "/Restaurant";
                 } else {
@@ -56,7 +70,19 @@ $(document).ready(function () {
 
     $("#cancel").click(function (e) {
         $('form')[0].reset();
-    });    
+    });
+
+    $("#previewMap").click(function () {
+        var latitude = $.trim($('#Restaurant_Latitude').val());
+        var longitude = $.trim($('#Restaurant_Longitude').val());
+        if (latitude != "" && longitude != "") {
+            //alert("latitude = " + latitude + " longitude = " + longitude);
+            var newLatlng = new google.maps.LatLng(latitude, longitude);
+            map.setCenter(newLatlng);
+        }
+    });
+
+    initialize()  
 
 });
 

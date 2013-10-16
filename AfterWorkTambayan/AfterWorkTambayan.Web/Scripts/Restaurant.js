@@ -21,12 +21,18 @@ $(document).ready(function () {
         //alert("item = " + item);
         switch (item) {
             case "listRestaurant":
+                $('#divResult').html("");
+                $('#divResult').html('<div class="progress progress-striped active"><div class="bar" style="width: 100%;"></div><span>Loading...Please wait</span></div>');
                 $('#divResult').load('Restaurant/GetRestaurant/' + id);
                 break;
             case "menuAdmin":
+                $('#divResult').html("");
+                $('#divResult').html('<div class="progress progress-striped active"><div class="bar" style="width: 100%;"></div><span>Loading...Please wait</span></div>');
                 $('#divResult').load('Restaurant/GetMenu');
                 break;
             case "addRestaurant":
+                $('#divResult').html("");
+                $('#divResult').html('<div class="progress progress-striped active"><div class="bar" style="width: 100%;"></div><span>Loading...Please wait</span></div>');
                 $('#divResult').load('Restaurant/AddRestaurant');
                 break;
             default:

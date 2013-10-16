@@ -3,7 +3,21 @@
 $(document).ready(function () {
     //alert("GetRestaurantPartial");
 
-    //$('#map').goMap(); 
+    $('#map').goMap({
+        latitude: 14.5565747,
+        longitude: 121.02142579999997,
+        zoom: 15,
+        panControl: true,
+        zoomControl: true,
+        mapTypeControl: true,
+        scaleControl: true,
+        streetViewControl: true,
+        overviewMapControl: true,
+        rotateControl: true,
+        navigationControl: true,
+        scaleControl: true,
+        maptype: 'ROADMAP'
+    });
 
     $('form').submit(function (e) {
         //e.preventDefault();        
