@@ -12,7 +12,7 @@ function initialize() {
 
 $(document).ready(function () {
     //alert("AddRestaurantPartial");
-        
+
     $('form').bind("keypress", function (e) {
         if (e.keyCode == 13) {
             return false;
@@ -77,12 +77,11 @@ $(document).ready(function () {
         var longitude = $.trim($('#Restaurant_Longitude').val());
         if (latitude != "" && longitude != "") {
             //alert("latitude = " + latitude + " longitude = " + longitude);
-            var newLatlng = new google.maps.LatLng(latitude, longitude);
-            map.setCenter(newLatlng);
+            restaurantModule.set(latitude, longitude);
         }
     });
 
-    initialize()  
+    restaurantModule.init(14.5583056, 121.0193083)
 
 });
 

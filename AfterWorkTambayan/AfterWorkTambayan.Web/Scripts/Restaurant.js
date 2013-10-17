@@ -1,5 +1,29 @@
 ﻿// Restaurant.js
 
+var restaurantModule = function () {
+    var map;
+
+    var init = function (latitude, longitude) {
+        var mapOptions = {
+            zoom: 15,
+            center: new google.maps.LatLng(latitude, longitude),
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        map = new google.maps.Map(document.getElementById('map'), mapOptions);
+    };
+
+    var set = function (latitude, longitude) {
+        var newLatlng = new google.maps.LatLng(latitude, longitude);
+        map.setCenter(newLatlng);
+    };
+
+    return {
+        init: init,
+        set: set        
+    };
+
+} ();
+
 $(document).ready(function () {
     //alert('Restaurant.js');    
 

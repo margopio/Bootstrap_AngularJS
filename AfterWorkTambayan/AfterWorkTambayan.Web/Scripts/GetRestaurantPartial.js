@@ -68,7 +68,23 @@ $(document).ready(function () {
 
     $("#cancel").click(function (e) {
         $('form')[0].reset();
-    });    
+    });
+
+    $("#previewMap").click(function () {
+        var latitude = $.trim($('#Restaurant_Latitude').val());
+        var longitude = $.trim($('#Restaurant_Longitude').val());
+        if (latitude != "" && longitude != "") {
+            //alert("latitude = " + latitude + " longitude = " + longitude);
+            restaurantModule.set(latitude, longitude);
+        }
+    });
+
+    var latitude = $.trim($('#Restaurant_Latitude').val());
+    var longitude = $.trim($('#Restaurant_Longitude').val());
+    if (latitude != "" && longitude != "") {
+        //alert("latitude = " + latitude + " longitude = " + longitude);
+        restaurantModule.init(latitude, longitude);
+    }
 
 });
 
