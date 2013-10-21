@@ -15,11 +15,11 @@
         .sidebar-nav
         {
             padding: 5px 0;
-        } 
-               
+        }               
     </style>    
     @Styles.Render("~/Content/css")     
     @* @Scripts.Render("~/bundles/modernizr")*@
+    @RenderSection("Style", required: false) 
 </head>
 <body>
     <div class="navbar navbar-fixed-top">

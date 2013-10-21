@@ -67,7 +67,8 @@ $(document).ready(function () {
             $('#Category_CategoryId').val(dataId);
             $('#Category_ImageUrl').val(imageUrl);
             $('#Category_Name').val(name);
-            $('#Category_Description').val(description);            
+            $('#Category_Description').val(description);
+            $('#iconImageUrl').attr("src", imageUrl);          
         }
     })
 
