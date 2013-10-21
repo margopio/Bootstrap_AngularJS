@@ -62,6 +62,7 @@ $(document).ready(function () {
             $('#Category_ImageUrl').val('');
             $('#Category_Name').val('');
             $('#Category_Description').val('');
+            $('#iconImageUrl').attr("src", ''); 
             add = false;
         } else {
             $('#Category_CategoryId').val(dataId);
