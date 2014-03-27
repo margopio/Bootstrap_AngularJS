@@ -1,0 +1,16 @@
+﻿<div class="row">
+    <div class="span3">
+        <a href="#">
+            <img class="img-responsive" src="@Model.ImageUrl" alt="Image Source"/>
+        </a>
+    </div>
+    <div class="span9">
+        <h4>@Model.Title</h4>
+        <p><i>@Model.DateAdded, @Model.AddedBy</i></p>
+        <p><strong>@Model.Body</strong></p>
+        <div class="row pull-right">            
+            <a href="/Article/GetArticle?articleId=@Model.ArticleId">Read More</a>
+        </div>
+    </div>
+</div>
+<hr />

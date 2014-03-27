@@ -64,18 +64,18 @@
                 </div>                
             </div>
             <div class="row" style="padding-top: 5px">
-                <div class="span4">
+                <div class="span5">
                     @Html.LabelFor(m => m.Restaurant.Currency)
                     @Html.DropDownListFor(model => model.Restaurant.Currency, Model.Currencies, "-- Select One --", new { @class = "span12" })
                     <span style="color: red">@Html.ValidationMessageFor(m => m.Restaurant.Currency)</span>
                 </div>
                 <div class="span3">
                     @Html.LabelFor(m => m.Restaurant.Tax)
-                    @Html.TextBoxFor(m => m.Restaurant.Tax, new { @class = "span10" })                    
+                    @Html.TextBoxFor(m => m.Restaurant.Tax, new { @class = "span11" })                    
                 </div>
-                <div class="span5">
+                <div class="span3">
                     @Html.LabelFor(m => m.Restaurant.Service)
-                    @Html.TextBoxFor(m => m.Restaurant.Service, new { @class = "span7" })
+                    @Html.TextBoxFor(m => m.Restaurant.Service, new { @class = "span11" })
                 </div>
             </div>
             <div class="row" style="padding-top: 5px">

@@ -59,24 +59,24 @@
                 </div>                
             </div>
             <div class="row" style="padding-top: 5px">
-                <div class="span4">
+                <div class="span5">
                     @Html.LabelFor(m => m.Restaurant.Currency)
                     @Html.DropDownListFor(model => model.Restaurant.Currency, Model.Currencies, "-- Select One --", new { @class = "span12" })
                     <span style="color: red">@Html.ValidationMessageFor(m => m.Restaurant.Currency)</span>
                 </div>
                 <div class="span3">
                     @Html.LabelFor(m => m.Restaurant.Tax)
-                    @Html.TextBoxFor(m => m.Restaurant.Tax, new { @class = "span7" })                    
+                    @Html.TextBoxFor(m => m.Restaurant.Tax, new { @class = "span11" })                    
                 </div>
-                <div class="span5">
+                <div class="span3">
                     @Html.LabelFor(m => m.Restaurant.Service)
-                    @Html.TextBoxFor(m => m.Restaurant.Service, new { @class = "span7" })
+                    @Html.TextBoxFor(m => m.Restaurant.Service, new { @class = "span11" })
                 </div>
             </div>
             <div class="row" style="padding-top: 5px">
                 <span class="help-block">Operation hours</span>
                 <div class="span2">                    
-                    @Html.TextBoxFor(m => m.Restaurant.OperationHrsFrom, new { @class = "span12" }) 
+                    @Html.TextBoxFor(m => m.Restaurant.OperationHrsFrom, new { @class = "span11" }) 
                 </div>
                 <div class="span3">                    
                     <div id="am" class="btn-group" data-toggle="buttons-radio">

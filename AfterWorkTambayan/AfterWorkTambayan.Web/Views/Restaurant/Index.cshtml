@@ -34,13 +34,13 @@
         <li class="divider"></li>
         <li class="nav-header"><i class="icon-plus-sign"></i>&nbsp;New Restaurant</li>
         <li><a href="#" data-category="addRestaurant">Add Restaurant</a></li>
-        <li class="divider"></li>
+        <li class="divider"></li>        
         <li>
             <a id="example" href="#" rel="popover">What's this?</a>
         </li>
     </ul>
 </div>
-<br />
+
 <div id="divResult" class="span9">
     @*@{
         if (Model.Any()) {
@@ -48,6 +48,8 @@
         }
     }*@
 </div>
+
+<br />
 
 @section Scripts {   
     @*@Scripts.Render("~/bundles/jqueryval") *@     
