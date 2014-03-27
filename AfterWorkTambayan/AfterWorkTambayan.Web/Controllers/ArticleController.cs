@@ -32,7 +32,7 @@ namespace AfterWorkTambayan.Web.Controllers
             article.ArticleId = Guid.NewGuid();
             article.Title = "Article 1";
             article.Body = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim.";
-            article.ImageUrl = "/Images/200x200.gif";
+            article.ImageUrl = "/Images/TestImage.gif";
             article.AddedBy = "Tester 1";
             article.DateAdded = DateTime.Now;
             _repositoryArticle.Add(article);
@@ -41,7 +41,7 @@ namespace AfterWorkTambayan.Web.Controllers
             article.ArticleId = Guid.NewGuid();
             article.Title = "Article 2";
             article.Body = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim.";
-            article.ImageUrl = "/Images/200x200.gif";
+            article.ImageUrl = "/Images/TestImage.gif";
             article.AddedBy = "Tester 2";
             article.DateAdded = DateTime.Now;
             _repositoryArticle.Add(article);
@@ -90,7 +90,7 @@ namespace AfterWorkTambayan.Web.Controllers
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim. " +
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim. "
                 ;
-            article.ImageUrl = "/Images/200x200.gif";
+            article.ImageUrl = "/Images/TestImage.gif";
             article.AddedBy = "Tester 3";
             article.DateAdded = DateTime.Now;
             _repositoryArticle.Add(article);
