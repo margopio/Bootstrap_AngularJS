@@ -190,10 +190,11 @@ namespace AfterWorkTambayan.Web.Controllers
                         return View();
                     }
 
-                    file.SaveAs(path + "/"  + file.FileName);
-
-                    article.ImageUrl = file.FileName;
+                    //file.SaveAs(path + "/"  + file.FileName);
+                    //article.ImageUrl = file.FileName;
                     //_repositoryArticle.Add(article);
+
+                    article.ImageUrl = "TestImage.gif";
                 }
 
                 _repositoryArticle.Add(article);
