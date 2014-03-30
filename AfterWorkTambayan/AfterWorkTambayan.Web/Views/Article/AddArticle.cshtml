@@ -85,7 +85,7 @@
                 <span style="color: red">@Html.ValidationMessageFor(m => m.Article.Body)</span>
             </div>
        </div>
-        <div class="row">
+       <div class="row">
             <div class="span12">
                 @Html.LabelFor(m => m.Article.Caption, new {style = "font-weight: bold"})
                 @Html.TextBoxFor(m => m.Article.Caption, new { @placeholder = "Firstmame Lastname", maxlength = "30" })<br />
@@ -93,9 +93,20 @@
             </div>
         </div>
         
+        <div class="row">
+            <input type="file" id="imgInp" name="file"/>
+            <img id="blah" src="/Images/TestImage.gif" alt="your image" height="100" width="300"/>
+        </div>       
     }
 
 </div>
 
-<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
-<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+@section Scripts {  
+    <script src="@Url.Content("~/Scripts/bootbox.min.js")" type="text/javascript"></script> 
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>       
+    <script src="@Url.Content("~/Scripts/Article.js")" type="text/javascript"></script>
+}
+
+
+
