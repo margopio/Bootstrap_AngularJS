@@ -193,10 +193,10 @@ namespace AfterWorkTambayan.Web.Controllers
                     file.SaveAs(path + "/"  + file.FileName);
 
                     article.ImageUrl = file.FileName;
-                    _repositoryArticle.Add(article);
+                    //_repositoryArticle.Add(article);
                 }
-                
-                
+
+                _repositoryArticle.Add(article);
                 return RedirectToAction("Index");
             }
             else
