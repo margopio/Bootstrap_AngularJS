@@ -1,0 +1,101 @@
+﻿@model AfterWorkTambayan.Web.Models.GetArticleViewModel
+
+@{
+    ViewBag.Title = "Article AddArticle Page";    
+}
+
+@section Style
+{
+    <style type="text/css">       
+        #outercontainer { position: relative; width: 100%; height: 400px; }
+        #innercontainer { position: absolute; top: 30%; left: 20%; width: 70%; height: 100%; }    
+    </style>
+}
+
+<div id="article" class="span3" style="padding-right: 40px">
+    <ul class="nav nav-list">
+        <li class="nav-header"><i class="icon-home"></i>&nbsp;Article</li>        
+    </ul>
+</div>
+<div id="divResult" class="span9">
+
+    <div class="row">  
+        <div class="span12">  
+            <ul class="breadcrumb">  
+                <li>  
+                    <a href="#">Home</a> <span class="divider">></span>  
+                </li>  
+                <li>  
+                    <a href="#">Information</a> <span class="divider">></span>  
+                </li>  
+                <li>  
+                    <a href="/Article">News and Advisories</a> <span class="divider">></span>  
+                </li> 
+                <li class="active">Create Article</li>  
+            </ul>  
+        </div>  
+    </div>
+    
+    @using (Html.BeginForm("AddArticle", "Article", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="row">
+            <div class="span4">
+                <h3>Create/Edit</h3>
+            </div>
+            <div class="span8">
+                <div class="pull-right">
+                    @*<i class="icon-road"></i>&nbsp;<a href="/Article/Preview">Preview</a>&nbsp;&nbsp;
+                    <i class="icon-file"></i>&nbsp;<a href="/Article/AddArticle?save=true">Save</a>&nbsp;&nbsp;
+                    <i class="icon-ok-circle"></i>&nbsp;<a href="/Article/AddArticle?post=true">Save and Post</a>&nbsp;&nbsp;
+                    <i class="icon-remove"></i>&nbsp;<a href="/Article">Cancel</a>*@
+                    <button type="submit" class="btn btn-primary" data-loading-text="Please wait..."><i class="icon-road icon-white"></i>&nbsp;Preview</button> 
+                    <button type="submit" class="btn btn-success" data-loading-text="Please wait..."><i class="icon-file icon-white"></i>&nbsp;Save</button> 
+                    <button type="submit" class="btn btn-success" data-loading-text="Please wait..."><i class="icon-ok-circle icon-white"></i>&nbsp;Save and Post</button> 
+                    <button id="cancel" type="reset" class="btn btn-inverse"><i class="icon-remove icon-white"></i>&nbsp;Cancel</button>    
+                </div>
+            </div>
+        </div>
+        <br clear="all" />
+    
+        if (ViewData.ModelState[""] != null && ViewData.ModelState[""].Errors.Any())
+        { 
+            <div class="row alert alert-error">          
+                @Html.ValidationSummary(true)
+            </div>
+        }
+        
+        <div class="row">
+            <div class="span12">
+                @Html.LabelFor(m => m.Article.Title, new {style = "font-weight: bold"})
+                @Html.TextBoxFor(m => m.Article.Title, new { @placeholder = "Title"})<br />
+                <span style="color: red">@Html.ValidationMessageFor(m => m.Article.Title)</span>
+            </div>
+        </div>
+        <div class="row">            
+            <div class="span12">
+                @Html.LabelFor(m => m.Article.AddedBy, new {style = "font-weight: bold"})
+                @Html.TextBoxFor(m => m.Article.AddedBy, new {@placeholder = "Firstmame Lastname"})<br />
+                <span style="color: red">@Html.ValidationMessageFor(m => m.Article.AddedBy)</span>
+            </div>
+        </div>
+        <div class="row">            
+            <div class="span12">
+                @Html.LabelFor(m => m.Article.Body, new {style = "font-weight: bold"})
+                @Html.TextAreaFor(m => m.Article.Body, new {style="height: 10em; width: 100%"})<br />
+                <span style="color: red">@Html.ValidationMessageFor(m => m.Article.Body)</span>
+            </div>
+       </div>
+        <div class="row">
+            <div class="span12">
+                @Html.LabelFor(m => m.Article.Caption, new {style = "font-weight: bold"})
+                @Html.TextBoxFor(m => m.Article.Caption, new { @placeholder = "Firstmame Lastname", maxlength = "30" })<br />
+                <span style="color: red">@Html.ValidationMessageFor(m => m.Article.Caption)</span>
+            </div>
+        </div>
+        
+    }
+
+</div>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>

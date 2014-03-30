@@ -637,10 +637,13 @@
     <Content Include="Views\Article\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Article\_ArticleListPartialView.cshtml" />
+    <Content Include="Views\Article\_ListArticlePartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Article\GetArticle.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Article\AddArticle.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

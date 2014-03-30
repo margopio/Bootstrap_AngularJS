@@ -18,18 +18,41 @@
     </ul>
 </div>
 <div id="divResult" class="span9">
+
+        <div class="row">  
+            <div class="span12">  
+                <ul class="breadcrumb">  
+                  <li>  
+                    <a href="#">Home</a> <span class="divider">></span>  
+                  </li>  
+                  <li>  
+                    <a href="#">Information</a> <span class="divider">></span>  
+                  </li>  
+                  <li class="active">News and Advisories</li>  
+                </ul>  
+            </div>  
+        </div> 
     
         <div class="row">
             <div class="span12">
-                <h2 class="page-header">News and Advisories
+                <h2>News and Advisories
                     <small>Showcase What You Have One Article at a Time</small>
                 </h2>
             </div>
         </div>
+
+        <div class="row  pull-right">
+            <div class="span12">
+                <i class="icon-pencil"></i>&nbsp;<a href="/Article/AddArticle">Create</a>&nbsp;&nbsp;
+                <i class="icon-home"></i>&nbsp;&nbsp;<a href="/Article">Back to Home</a>
+            </div>
+        </div>
+
+        <br clear="all" /><br />
         
         @foreach (var item in Model.Articles)
         {
-            @Html.Partial("_ArticleListPartialView", item)
+            @Html.Partial("_ListArticlePartialView", item)
         }        
         
         <div class="row  pull-right">
@@ -55,7 +78,7 @@
         
 </div>
 
-<br />
+<br clear="all" />
 
 @section Scripts {  
     <script src="@Url.Content("~/Scripts/bootbox.min.js")" type="text/javascript"></script>        

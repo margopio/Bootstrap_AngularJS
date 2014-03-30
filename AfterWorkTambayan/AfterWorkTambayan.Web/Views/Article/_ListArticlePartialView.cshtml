@@ -7,7 +7,7 @@
     <div class="span9">
         <h4>@Model.Title</h4>
         <p><i>@Model.DateAdded, @Model.AddedBy</i></p>
-        <p><strong>@Model.Body</strong></p>
+        <p><strong>@Html.Raw(HttpUtility.HtmlEncode(@Model.Body).Replace("\n", "<br/>"))</strong></p>
         <div class="row pull-right">            
             <a href="/Article/GetArticle?articleId=@Model.ArticleId">Read More</a>
         </div>

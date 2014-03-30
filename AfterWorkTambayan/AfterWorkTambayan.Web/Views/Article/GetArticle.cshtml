@@ -22,21 +22,40 @@
         <li class="nav-header"><i class="icon-home"></i>&nbsp;Article</li>        
     </ul>
 </div>
-<div id="divResult" class="span9">    
+<div id="divResult" class="span9">  
 
-    <div class="row">
+    <div class="row">  
+        <div class="span12">  
+            <ul class="breadcrumb">  
+                <li>  
+                    <a href="#">Home</a> <span class="divider">></span>  
+                </li>  
+                <li>  
+                    <a href="#">Information</a> <span class="divider">></span>  
+                </li>  
+                <li>  
+                    <a href="/Article">News and Advisories</a> <span class="divider">></span>  
+                </li> 
+                <li class="active">Article Title</li>  
+            </ul>  
+        </div>  
+    </div>   
+
+    @*<div class="row">
         <h2>@Model.Article.Title</h2>
         <p><i>@Model.Article.DateAdded, @Model.Article.AddedBy</i></p>
-    </div>
+    </div>*@
+    <br />
     <div class="row">        
         @*<img class="img-responsive" style="padding-left: 10px;" border="0" align="right" src="@Model.Article.ImageUrl" alt="Image Source"/>*@
 
-        <div class="image" style="float: right; margin-left: 0.5em">
+        <div class="image" style="float: right; margin-left: 1.0em">
             <img class="img-responsive" border="0" src="@Model.Article.ImageUrl" alt="Image Source"/>
-            <div>This is going to be a very long <br />caption text plus more blah blah blah</div>
+            <div>@Model.Article.Caption</div>
         </div>
-
-        <strong>@Model.Article.Body</strong>        
+        <h2>@Model.Article.Title</h2>
+        <p><i>@Model.Article.DateAdded, @Model.Article.AddedBy</i></p>
+        <p><strong>@Html.Raw(HttpUtility.HtmlEncode(@Model.Article.Body).Replace("\n", "<br/>"))</strong></p>
     </div>
 </div>
 
