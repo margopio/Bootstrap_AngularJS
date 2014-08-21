@@ -1,5 +1,4 @@
 ﻿// Restaurant.js
-
 var restaurantModule = function () {
     var map;
 
@@ -19,20 +18,29 @@ var restaurantModule = function () {
 
     return {
         init: init,
-        set: set        
+        set: set
     };
 
 } ();
 
+var angularJSFix;
+function loadingIndicator() {
+    $('#divResult').html("");
+    $('#divResult').html('<div id="outercontainer"><div id="innercontainer">' +
+                    '<div class="progress progress-striped active"><div class="bar" style="width: 100%;"></div><span>Loading...Please wait</span></div>' +
+                    '</div></div>');
+    angularJSFix = true;
+}
+
 $(document).ready(function () {
-    //alert('Restaurant.js');    
+    angularJSFix = false;
 
     $('#example').popover(
         {
             title: 'About',
             content: "<strong>Restaurant Profile Accordion and Add Restaurant Partial View are about integrating conventional ASP.NET MVC with Bootstrap.<br /><br />" +
                 "Menu Administration is working around ASP.NET MVC to code Bootstrap modal input forms.<br /><br />" +
-                "Foods and Services Accordion shall be all AngularJS.</strong>"
+                "Foods and Services Accordion is all AngularJS.</strong>"
         }
     );
 
@@ -42,63 +50,31 @@ $(document).ready(function () {
 
         var item = $(this).attr("data-category");
         var id = $(this).attr("data-id");
-        //alert("item = " + item);
         switch (item) {
             case "listRestaurant":
-                $('#divResult').html("");
-                $('#divResult').html('<div id="outercontainer"><div id="innercontainer">' +
-                    '<div class="progress progress-striped active"><div class="bar" style="width: 100%;"></div><span>Loading...Please wait</span></div>' +
-                    '</div></div>');
+                loadingIndicator();
                 $('#divResult').load('Restaurant/GetRestaurant/' + id);
                 break;
             case "menuAdmin":
-                $('#divResult').html("");
-                $('#divResult').html('<div id="outercontainer"><div id="innercontainer">' +
-                    '<div class="progress progress-striped active"><div class="bar" style="width: 100%;"></div><span>Loading...Please wait</span></div>' +
-                    '</div></div>');
+                loadingIndicator();
                 $('#divResult').load('Restaurant/GetMenu');
                 break;
             case "addRestaurant":
-                $('#divResult').html("");
-                $('#divResult').html('<div id="outercontainer"><div id="innercontainer">' +
-                    '<div class="progress progress-striped active"><div class="bar" style="width: 100%;"></div><span>Loading...Please wait</span></div>' +
-                    '</div></div>');
+                loadingIndicator();
                 $('#divResult').load('Restaurant/AddRestaurant');
                 break;
             default:
                 break;
         }
-        //if (item === "menuAdmin") {
-        //$("#Comments").load("@Url.Content("~/BookComments/Index?BookId=" + ViewBag.BookId)");           
-        //$('#divResult').load('Restaurant/GetMenu/');
-        //}
+
         return false;
     });
 
     var active = $('#restaurant li.active a').attr("data-id");
-    //alert("active out = " + active);
-    if (active) {
-        //alert("active in = " + active);
+    if (active && !doAngularJSFix) {
         $('#divResult').load('Restaurant/GetRestaurant/' + active);
+    } else {
+        $('#divResult').load('Restaurant/GetRestaurant/' + active + "?angularJSFix=yes");
     }
-
-    //    $(document).on('click', '#cancel', function () {
-    //        $('form')[0].reset();
-
-    //        $('form')[0].removeData("validator").removeData("unobtrusiveValidation");
-    //        $.validator.unobtrusive.parse($("#divResult"));
-    //    });    
-
-    //    $(document).on('submit', 'form', function (e) {
-    //        alert("outside");
-    //        if (!Sys.Mvc.FormContext.getValidationForForm(this).validate('submit').length) {
-    //            alert("inside");
-    //            //$.post("/Home/CreateUserCompanyInformation", $(this).serialize(), function (data) {               
-    //            //$("#dynamicData").html(data);                
-    //            //});            
-    //        }
-    //        e.preventDefault();
-    //        return false;
-    //    });
 
 });

@@ -4,19 +4,19 @@
         <div class="accordion-group" style="padding-left: 5px">
             <div class="accordion-heading">
                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-                    <strong>Restaurant</strong>&nbsp;<i class="icon-edit"></i> 
+                    <strong>Restaurant</strong>&nbsp;<i class="icon-list-alt"></i> 
                 </a>                
-            </div>
-            <div id="collapseOne" class="accordion-body collapse in">
+            </div>           
+            <div id="collapseOne" class="accordion-body collapse @ViewBag.DoAngularJSFix1">            
                 <div class="accordion-inner" style="padding-left: 30px">
                     @Html.Partial("_GetRestaurantPartialView", Model)
-                </div>
-            </div>
+                </div>                
+            </div>     
         </div>
         <div class="accordion-group" style="padding-left: 5px">
             <div class="accordion-heading">
                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
-                    <strong>Restaurant Contact Info</strong>&nbsp;<i class="icon-edit"></i> 
+                    <strong>Restaurant Contact Info</strong>&nbsp;<i class="icon-list-alt"></i> 
                 </a>
             </div>
             <div id="collapseTwo" class="accordion-body collapse">
@@ -28,13 +28,14 @@
         <div class="accordion-group" style="padding-left: 5px">
             <div class="accordion-heading">
                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
-                    <strong>Foods and Services</strong>&nbsp;<i class="icon-edit"></i> 
+                    <strong>Foods and Services</strong>&nbsp;<i class="icon-list-alt"></i> 
                 </a>
             </div>
-            <div id="collapseThree" class="accordion-body collapse">
+            <div id="collapseThree" class="accordion-body collapse @ViewBag.DoAngularJSFix2">
                 <div class="accordion-inner">
-                    Foods and Services ---
+                    @{Html.RenderPartial("_FoodsAndServicesPartialView");} 
                 </div>
-            </div>
+            </div>            
         </div>
     </div>
+

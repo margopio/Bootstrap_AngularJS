@@ -21,14 +21,14 @@ namespace AfterWorkTambayan.Web.Controllers
             _repositoryRestaurant = new RestaurantRepository();
             _repositoryCategory = new CategoryRepository();
         }
-        
+
         //
         // GET: /Restaurant/
 
-        public ActionResult Index()
+        public ActionResult Index(string angularJSFix = null)
         {
             //
-            //_repository.ClearAll();
+            //_repositoryRestaurant.ClearAll();
             //Restaurant restaurant = new Restaurant();
             //restaurant.Address = "Address 1";
             //restaurant.City = "City 1";
@@ -45,7 +45,7 @@ namespace AfterWorkTambayan.Web.Controllers
             //restaurant.State = "GU";
             //restaurant.Tax = 0.05;
             //restaurant.ZipCode = "1234";
-            //_repository.Add(restaurant);
+            //_repositoryRestaurant.Add(restaurant);
 
             //restaurant = new Restaurant();
             //restaurant.Address = "Address 2";
@@ -67,35 +67,40 @@ namespace AfterWorkTambayan.Web.Controllers
             //            
 
             var items = (from r in _repositoryRestaurant.GetRestaurants()
-                         orderby r.Name 
+                         orderby r.Name
                          select new ListRestaurantsViewModel
                          {
-                            Id = r.RestaurantId,
-                            Name = r.Name
-                         }).ToList();            
+                             Id = r.RestaurantId,
+                             Name = r.Name
+                         }).ToList();
+
+            if (!String.IsNullOrEmpty(angularJSFix))
+            {
+                ViewBag.DoAngularJSFix = "Yes";
+            }
 
             return View(items);
-        }        
+        }
 
         //
         // GET: /Restaurant/GetMenu
 
         public ActionResult GetMenu()
-         {
+        {
             MenuViewModel menuViewModel = new MenuViewModel();
             menuViewModel.Category = new Category();
             menuViewModel.Categories = (from r in _repositoryCategory.GetCategories()
-                         orderby r.Name
-                         select new Category
-                         {
-                            CategoryId = r.CategoryId,
-                            ImageUrl = r.ImageUrl,
-                            Name = r.Name,
-                            Description = r.Description
-                         }).ToList();
+                                        orderby r.Name
+                                        select new Category
+                                        {
+                                            CategoryId = r.CategoryId,
+                                            ImageUrl = r.ImageUrl,
+                                            Name = r.Name,
+                                            Description = r.Description
+                                        }).ToList();
 
             return PartialView("_MenuPartialView", menuViewModel);
-         }
+        }
 
         //
         // POST: /Restaurant/GetMenu
@@ -108,13 +113,13 @@ namespace AfterWorkTambayan.Web.Controllers
                 if (menuViewModel.Category.CategoryId != null)
                 {
                     _repositoryCategory.Delete(menuViewModel.Category.CategoryId);
-                }                
+                }
                 Category category = new Category();
                 category.CategoryId = Guid.NewGuid();
                 category.ImageUrl = menuViewModel.Category.ImageUrl;
                 category.Name = menuViewModel.Category.Name;
                 category.Description = menuViewModel.Category.Description;
-                _repositoryCategory.Add(category);                
+                _repositoryCategory.Add(category);
                 return Content("OK");
             }
             else
@@ -136,7 +141,7 @@ namespace AfterWorkTambayan.Web.Controllers
         //
         // GET: /Restaurant/GetRestaurant
 
-        public ActionResult GetRestaurant(Guid id)
+        public ActionResult GetRestaurant(Guid id, string angularJSFix)
         {
             var restaurant = _repositoryRestaurant.GetRestaurant(id);
             GetRestaurantViewModel restaurantViewModel = new GetRestaurantViewModel();
@@ -164,17 +169,26 @@ namespace AfterWorkTambayan.Web.Controllers
             else
             {
                 restaurantViewModel.Restaurant = new Restaurant();
-            }            
+            }
             var amHrs = restaurantViewModel.Restaurant.OperationHrsFrom;
             var pmHrs = restaurantViewModel.Restaurant.OperationHrsTo;
             restaurantViewModel.AMHrs = amHrs.Substring(amHrs.Length - 2) == "am" ? true : false;
-            restaurantViewModel.PMHrs = pmHrs.Substring(pmHrs.Length - 2) == "pm" ? true : false; 
+            restaurantViewModel.PMHrs = pmHrs.Substring(pmHrs.Length - 2) == "pm" ? true : false;
             restaurantViewModel.Restaurant.OperationHrsFrom = restaurantViewModel.Restaurant.OperationHrsFrom.Substring(0, restaurantViewModel.Restaurant.OperationHrsFrom.Length - 3);
-            restaurantViewModel.Restaurant.OperationHrsTo = restaurantViewModel.Restaurant.OperationHrsTo.Substring(0, restaurantViewModel.Restaurant.OperationHrsTo.Length - 3);            
+            restaurantViewModel.Restaurant.OperationHrsTo = restaurantViewModel.Restaurant.OperationHrsTo.Substring(0, restaurantViewModel.Restaurant.OperationHrsTo.Length - 3);
             restaurantViewModel.USStates = USStates.StateSelectList;
             restaurantViewModel.Currencies = Currencies.StateSelectList;
             ViewBag.Status = "Get";
-            
+
+            if (String.IsNullOrEmpty(angularJSFix))
+            {
+                ViewBag.DoAngularJSFix1 = "in";
+            }
+            else
+            {
+                ViewBag.DoAngularJSFix2 = "in";
+            }
+
             return PartialView("_ListRestaurantsPartialView", restaurantViewModel);
         }
 
@@ -203,7 +217,7 @@ namespace AfterWorkTambayan.Web.Controllers
                 restaurant.State = restaurantViewModel.Restaurant.State;
                 restaurant.Tax = restaurantViewModel.Restaurant.Tax;
                 restaurant.ZipCode = restaurantViewModel.Restaurant.ZipCode;
-                _repositoryRestaurant.Add(restaurant);                
+                _repositoryRestaurant.Add(restaurant);
 
                 return Content("OK");
             }
@@ -235,7 +249,7 @@ namespace AfterWorkTambayan.Web.Controllers
 
         [HttpPost]
         public ActionResult AddRestaurant(GetRestaurantViewModel restaurantViewModel)
-        {           
+        {
             if (ModelState.IsValid)
             {
                 Restaurant restaurant = new Restaurant();

@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-    $('#collapseThree').on('show', function () {        
+    $('#collapseThree').on('show', function () {
         if (angularJSFix) {
             loadingIndicator();
             window.location.href = "/Restaurant?angularJSFix=Yes";
@@ -25,7 +25,7 @@ function FoodsAndServicesCtrl($scope) {
                         { service: "Reservation", action: false, test: true, public: true, internal: false },
                         { service: "Waiters", action: false, test: true, public: true, internal: false }
                     ]
-                },                
+                },
                 {
                     type: "Visayan",
                     selected: false,
@@ -139,7 +139,7 @@ function FoodsAndServicesCtrl($scope) {
         if (food.selected) {
             $scope.data.selectedAvailable.foodType = food.type;
             $scope.data.master = "";
-        }        
+        }
         $scope.data.editFlag = false;
     };
 
@@ -172,7 +172,7 @@ function FoodsAndServicesCtrl($scope) {
                 item.selected = false;
             }
         });
-    };    
+    };
 
     $scope.getActiveYes = function (item, active) {
         return item[active] ? "active" : "";
@@ -224,7 +224,7 @@ function FoodsAndServicesCtrl($scope) {
                 }
             }
         });
-    };    
+    };
 
     // Initialization
     var keepGoing = true;
@@ -242,7 +242,7 @@ function FoodsAndServicesCtrl($scope) {
 
 angular.element(document).ready(function () {
     $('body').attr('ng-controller', 'FoodsAndServicesCtrl');
-    angular.bootstrap(document, ['app']);    
+    angular.bootstrap(document, ['app']);
 });
 
 
