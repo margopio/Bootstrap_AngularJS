@@ -16,7 +16,8 @@
     <ul class="nav nav-list">
         <li class="nav-header"><i class="icon-home"></i>&nbsp;Restaurant</li>
         @{
-            if (Model.Any()) {
+            if (Model.Any())
+            {
                 <li class="active"><a href="#" data-category="listRestaurant" data-id="@Model.First().Id">@Model.First().Name</a></li>
             }
             int i = 0;
@@ -48,7 +49,8 @@
 <br />
 
 <script type="text/javascript">
-    var doAngularJSFix = @((ViewBag.DoAngularJSFix != null).ToString().ToLower());    
+    var doAngularJSFix = @((ViewBag.DoAngularJSFix != null).ToString().ToLower());  
+    var doAngularJSFixRestaurant =  '@ViewBag.DoAngularJSFixRestaurant';    
 </script>  
 
 @section Scripts {   

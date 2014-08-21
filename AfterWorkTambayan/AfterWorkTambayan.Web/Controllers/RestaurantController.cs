@@ -25,7 +25,7 @@ namespace AfterWorkTambayan.Web.Controllers
         //
         // GET: /Restaurant/
 
-        public ActionResult Index(string angularJSFix = null)
+        public ActionResult Index(string angularJSFix, string restaurantId)
         {
             //
             //_repositoryRestaurant.ClearAll();
@@ -63,7 +63,7 @@ namespace AfterWorkTambayan.Web.Controllers
             //restaurant.State = "GU";
             //restaurant.Tax = 0.05;
             //restaurant.ZipCode = "1234";
-            //_repository.Add(restaurant);
+            //_repositoryRestaurant.Add(restaurant);
             //            
 
             var items = (from r in _repositoryRestaurant.GetRestaurants()
@@ -77,6 +77,7 @@ namespace AfterWorkTambayan.Web.Controllers
             if (!String.IsNullOrEmpty(angularJSFix))
             {
                 ViewBag.DoAngularJSFix = "Yes";
+                ViewBag.DoAngularJSFixRestaurant = new Guid(restaurantId);
             }
 
             return View(items);

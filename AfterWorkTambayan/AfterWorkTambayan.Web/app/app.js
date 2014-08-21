@@ -1,8 +1,8 @@
 ﻿$(document).ready(function () {
     $('#collapseThree').on('show', function () {
         if (angularJSFix) {
-            loadingIndicator();
-            window.location.href = "/Restaurant?angularJSFix=Yes";
+            loadingIndicator();            
+            window.location.href = "/Restaurant?angularJSFix=Yes&restaurantId=" + angularJSFixRestaurant;
         }
     })
 });

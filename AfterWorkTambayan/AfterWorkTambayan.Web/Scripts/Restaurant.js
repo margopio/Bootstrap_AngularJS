@@ -24,6 +24,7 @@ var restaurantModule = function () {
 } ();
 
 var angularJSFix;
+var angularJSFixRestaurant;
 function loadingIndicator() {
     $('#divResult').html("");
     $('#divResult').html('<div id="outercontainer"><div id="innercontainer">' +
@@ -34,6 +35,7 @@ function loadingIndicator() {
 
 $(document).ready(function () {
     angularJSFix = false;
+    angularJSFixRestaurant = "";
 
     $('#example').popover(
         {
@@ -47,9 +49,10 @@ $(document).ready(function () {
     $('#restaurant a[href="#"]').click(function () {
         $('li').removeClass('active');
         $(this).closest('li').addClass('active');
-
         var item = $(this).attr("data-category");
         var id = $(this).attr("data-id");
+        angularJSFixRestaurant = id;
+        
         switch (item) {
             case "listRestaurant":
                 loadingIndicator();
@@ -69,12 +72,14 @@ $(document).ready(function () {
 
         return false;
     });
-
+    
     var active = $('#restaurant li.active a').attr("data-id");
     if (active && !doAngularJSFix) {
         $('#divResult').load('Restaurant/GetRestaurant/' + active);
-    } else {
-        $('#divResult').load('Restaurant/GetRestaurant/' + active + "?angularJSFix=yes");
+    } else if (doAngularJSFix && doAngularJSFixRestaurant) {        
+        $('li').removeClass('active');        
+        $("#restaurant").find("[data-id='" + doAngularJSFixRestaurant + "']").closest('li').addClass("active")
+        $('#divResult').load('Restaurant/GetRestaurant/' + doAngularJSFixRestaurant + "?angularJSFix=yes");
     }
 
 });
